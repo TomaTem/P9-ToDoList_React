@@ -3,13 +3,16 @@ import React from 'react';
 function ToDoList({toDoList, setToDoList}) {
   return (
     <>
-      <h3>Список задач</h3>
+      <div class='d-grid gap-2 mt-5'>
+        <h3 className='captionList badge text-bg-primary'>Список задач</h3>
+      </div>
       <div className='mb-3'>
         {toDoList.map(post => (
           <div key={post.id} className='form-check'>
             <input
               className='form-check-input'
               type='checkbox'
+              defaultChecked={post.taskStatus ? 'checked' : ''}
               value=''
               id='flexCheckDefault'
               onClick={() => {
@@ -23,8 +26,7 @@ function ToDoList({toDoList, setToDoList}) {
               }}
             />
             <label
-              className='form-check-label'
-              id={post.taskStatus ? 'checked' : ''}
+              className={`form-check-label ${post.taskStatus ? 'checked' : ''}`}
               htmlFor='flexCheckDefault'>
               {post.task}
             </label>

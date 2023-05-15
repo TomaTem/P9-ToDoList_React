@@ -1,3 +1,16 @@
-#checked {
+.checked {
   text-decoration: line-through;
+}
+
+.main {
+  padding: 0 15%;
+}
+
+.captionList {
+  font-size: 1.3rem;
+}
+
+.captionTask {
+  font-size: 1.1rem;
+  font-weight: normal;
 }
