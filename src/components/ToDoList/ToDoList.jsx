@@ -1,6 +1,10 @@
 import React from 'react';
+import { useContext } from 'react';
+import { globalContext } from '../../contexts/globalContext';
 
-function ToDoList({toDoList, setToDoList}) {
+function ToDoList() {
+  const {toDoList, setToDoList} = useContext(globalContext);
+  
   return (
     <>
       <div class='d-grid gap-2 mt-5'>

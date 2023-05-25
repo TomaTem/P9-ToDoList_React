@@ -1,6 +1,10 @@
 import React from 'react';
+import { useContext } from 'react';
+import { globalContext } from '../../contexts/globalContext';
 
-function Task({task, setTask, handleSubmit}) {
+function Task() {
+  const {task, setTask, handleSubmit} = useContext(globalContext);
+
   return (
     <form className='mb-5' onSubmit={handleSubmit}>
       <div className='mb-3'>
