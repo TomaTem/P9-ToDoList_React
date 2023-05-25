@@ -1,13 +1,34 @@
 import React from 'react';
-import { useContext } from 'react';
-import { globalContext } from '../../contexts/globalContext';
+import {useContext} from 'react';
+import {globalContext} from '../../contexts/globalContext';
 
 function ToDoList() {
-  const { state, dispatch } = useContext(globalContext);
-  
+  const {state, dispatch} = useContext(globalContext);
+
+  function chekingTask(id) {
+    dispatch({
+      type: 'CHECK_TASK',
+      payload: id,
+    });
+  }
+
+  function deletingTask(id) {
+    dispatch({
+      type: 'DELETE_TASK',
+      payload: id,
+    });
+  }
+
+  function editingTask(id) {
+    dispatch({
+      type: 'EDIT_TASK',
+      payload: id,
+    });
+  }
+
   return (
     <>
-      <div class='d-grid gap-2 mt-5'>
+      <div className='d-grid gap-2 mt-5'>
         <h3 className='captionList badge text-bg-primary'>Список задач</h3>
       </div>
       <div className='mb-3'>
@@ -19,24 +40,25 @@ function ToDoList() {
               defaultChecked={post.taskStatus ? 'checked' : ''}
               value=''
               id='flexCheckDefault'
-              onClick={() => {
-                let newPosts = state.toDoList.map(el => {
-                  if (post.id === el.id) {
-                    el.taskStatus = !el.taskStatus;
-                  }
-                  return {...el};
-                });
-                dispatch({
-                  type: 'REWRITE_TODOLIST',
-                  payload: newPosts,
-                })
-              }}
+              onClick={() => chekingTask(post.id)}
             />
             <label
               className={`form-check-label ${post.taskStatus ? 'checked' : ''}`}
               htmlFor='flexCheckDefault'>
               {post.task}
             </label>
+            <button
+              type='button'
+              // onClick={() => editingTask(post.id)}
+              className='btn btn-outline-primary editBtn'>
+              <i class='fa-solid fa-pen'></i>
+            </button>
+            <button
+              type='button'
+              onClick={() => deletingTask(post.id)}
+              className='btn btn-outline-primary deleteBtn'>
+              <i className='fa fa-trash'></i>
+            </button>
           </div>
         ))}
       </div>

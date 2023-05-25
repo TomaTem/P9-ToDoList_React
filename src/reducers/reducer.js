@@ -4,11 +4,30 @@ export function reducer(state, action) {
       const newTask = action.payload;
       return {...state, toDoList: [...state.toDoList, newTask]};
     }
-    case 'REWRITE_TODOLIST': {
-        return {...state, toDoList: action.payload}
+    case 'CHECK_TASK': {
+      const id = action.payload;
+      let newPosts = state.toDoList.map(el => {
+        if (id === el.id) {
+          el.taskStatus = !el.taskStatus;
+        }
+        return {...el};
+      });
+      return {...state, toDoList: newPosts}
     }
     case 'DELETE_TASK': {
-      break;
+      const id = action.payload;
+      let reducedToDoList = state.toDoList.filter(
+        el => id !== el.id
+      );
+      return {...state, toDoList: reducedToDoList}
+    }
+    case 'EDIT_TASK': {
+      // const id = action.payload;
+      // let reducedToDoList = state.toDoList.filter(
+      //   el => id !== el.id
+      // );
+      // return {...state, toDoList: reducedToDoList}
+      break
     }
     default: {
       return state

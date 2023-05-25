@@ -8,6 +8,7 @@ function Task() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    if (task.length > 0) {
     dispatch({
       type: 'ADD_TASK',
       payload: {
@@ -17,7 +18,7 @@ function Task() {
       }
     })
     setTask('');
-  }
+  }}
 
   return (
     <form className='mb-5' onSubmit={handleSubmit}>

@@ -14,3 +14,22 @@
   font-size: 1.1rem;
   font-weight: normal;
 }
+
+.form-check {
+  display: flex;
+  align-items: center;
+  margin: 0.7rem 0;
+}
+.form-check-label {
+  margin-left: 10px;
+}
+.editBtn {
+  margin-left: 2.25rem;
+  padding: 0 0.4rem;
+  font-size: 0.9rem;
+}
+.deleteBtn {
+  margin-left: 0.25rem;
+  padding: 0 0.438rem;
+  font-size: 0.9rem;
+}
