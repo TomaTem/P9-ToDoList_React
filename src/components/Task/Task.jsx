@@ -1,9 +1,23 @@
 import React from 'react';
-import { useContext } from 'react';
-import { globalContext } from '../../contexts/globalContext';
+import {useState, useContext} from 'react';
+import {globalContext} from '../../contexts/globalContext';
 
 function Task() {
-  const {task, setTask, handleSubmit} = useContext(globalContext);
+  const {dispatch} = useContext(globalContext);
+  const [task, setTask] = useState('');
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    dispatch({
+      type: 'ADD_TASK',
+      payload: {
+        task,
+        id: Date.now(),
+        taskStatus: false,
+      }
+    })
+    setTask('');
+  }
 
   return (
     <form className='mb-5' onSubmit={handleSubmit}>

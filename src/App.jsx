@@ -3,28 +3,24 @@ import Main from './components/Main/Main';
 import Footer from './components/Footer/Footer';
 import React from 'react';
 import {globalContext as GlobalContext} from './contexts/globalContext';
-import {useState} from 'react';
+// import { reducer } from './reducers/reducer';
+// import { useReducer } from 'react';
 import {useLocalStorage} from './hooks/useLS';
 import './App.css';
 
 function App() {
-  const [toDoList, setToDoList] = useLocalStorage('toDoList', []);
-  const [task, setTask] = useState('');
+  const initialState = {
+    toDoList: [],
+  };
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const post = {
-      task,
-      id: Date.now(),
-      taskStatus: false,
-    };
-    setToDoList(prev => [...prev, post]);
-    setTask('');
-  }
+  const [state, dispatch] = useLocalStorage('toDoList', initialState);
+  // const [state, dispatch] = useReducer(reducer, initialState);
+  // const [toDoList, setToDoList] = useLocalStorage('toDoList', []);
 
   return (
     <>
-      <GlobalContext.Provider value={{toDoList, setToDoList, task, setTask, handleSubmit}}>
+      <GlobalContext.Provider
+        value={{state, dispatch}}>
         <div>
           <Header />
           <Main />

@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { globalContext } from '../../contexts/globalContext';
 
 function ToDoList() {
-  const {toDoList, setToDoList} = useContext(globalContext);
+  const { state, dispatch } = useContext(globalContext);
   
   return (
     <>
@@ -11,7 +11,7 @@ function ToDoList() {
         <h3 className='captionList badge text-bg-primary'>Список задач</h3>
       </div>
       <div className='mb-3'>
-        {toDoList.map(post => (
+        {state.toDoList.map(post => (
           <div key={post.id} className='form-check'>
             <input
               className='form-check-input'
@@ -20,13 +20,16 @@ function ToDoList() {
               value=''
               id='flexCheckDefault'
               onClick={() => {
-                let newPosts = toDoList.map(el => {
+                let newPosts = state.toDoList.map(el => {
                   if (post.id === el.id) {
                     el.taskStatus = !el.taskStatus;
                   }
                   return {...el};
                 });
-                setToDoList(newPosts);
+                dispatch({
+                  type: 'REWRITE_TODOLIST',
+                  payload: newPosts,
+                })
               }}
             />
             <label
