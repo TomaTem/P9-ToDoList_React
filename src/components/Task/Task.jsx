@@ -30,7 +30,7 @@ function Task() {
           value={task}
         />
       </div>
-      <div class='d-grid gap-2 d-md-flex justify-content-md-end'>
+      <div className='d-grid gap-2 d-md-flex justify-content-md-end'>
         <button type='submit' className='btn btn-primary me-md-2'>
           Добавить
         </button>
