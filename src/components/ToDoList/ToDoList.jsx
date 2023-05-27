@@ -1,4 +1,5 @@
 import React from 'react';
+import ChangingTask from '../ChangingTask/ChangingTask';
 import {useContext} from 'react';
 import {globalContext} from '../../contexts/globalContext';
 
@@ -33,32 +34,41 @@ function ToDoList() {
       </div>
       <div className='mb-3'>
         {state.toDoList.map(post => (
-          <div key={post.id} className='form-check'>
-            <input
-              className='form-check-input'
-              type='checkbox'
-              defaultChecked={post.taskStatus ? 'checked' : ''}
-              value=''
-              id='flexCheckDefault'
-              onClick={() => chekingTask(post.id)}
+          <div key={post.id}>
+            <div className={`form-check ${post.taskEditStatus ? 'none' : ''}`}>
+              <input
+                className='form-check-input'
+                type='checkbox'
+                checked={post.taskCheckStatus ? 'checked' : ''}
+                value=''
+                id='flexCheckDefault'
+                onClick={() => chekingTask(post.id)}
+              />
+              <label
+                className={`form-check-label ${
+                  post.taskCheckStatus ? 'checked' : ''
+                }`}
+                htmlFor='flexCheckDefault'>
+                {post.task}
+              </label>
+              <button
+                type='button'
+                onClick={() => editingTask(post.id)}
+                className='btn btn-outline-primary editBtn'>
+                <i className='fa-solid fa-pen'></i>
+              </button>
+              <button
+                type='button'
+                onClick={() => deletingTask(post.id)}
+                className='btn btn-outline-primary deleteBtn'>
+                <i className='fa fa-trash'></i>
+              </button>
+            </div>
+            <ChangingTask
+              task={post.task}
+              taskEditStatus={post.taskEditStatus}
+              id={post.id}
             />
-            <label
-              className={`form-check-label ${post.taskStatus ? 'checked' : ''}`}
-              htmlFor='flexCheckDefault'>
-              {post.task}
-            </label>
-            <button
-              type='button'
-              // onClick={() => editingTask(post.id)}
-              className='btn btn-outline-primary editBtn'>
-              <i class='fa-solid fa-pen'></i>
-            </button>
-            <button
-              type='button'
-              onClick={() => deletingTask(post.id)}
-              className='btn btn-outline-primary deleteBtn'>
-              <i className='fa fa-trash'></i>
-            </button>
           </div>
         ))}
       </div>

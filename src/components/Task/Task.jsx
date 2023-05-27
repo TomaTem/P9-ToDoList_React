@@ -14,7 +14,8 @@ function Task() {
       payload: {
         task,
         id: Date.now(),
-        taskStatus: false,
+        taskCheckStatus: false,
+        taskEditStatus: false,
       }
     })
     setTask('');

@@ -23,6 +23,11 @@
 .form-check-label {
   margin-left: 10px;
 }
+.form-edit {
+  display: flex;
+  align-items: center;
+  width: 100%
+}
 .editBtn {
   margin-left: 2.25rem;
   padding: 0 0.4rem;
@@ -32,4 +37,7 @@
   margin-left: 0.25rem;
   padding: 0 0.438rem;
   font-size: 0.9rem;
+}
+.none {
+  display: none;
 }
